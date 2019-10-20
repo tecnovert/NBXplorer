@@ -7,7 +7,7 @@
 		<Copyright>Copyright © Digital Garage 2017</Copyright>
 		<Description>Client API for the minimalist HD Wallet Tracker NBXplorer</Description>
 		<PackageIconUrl>https://cdn-images-1.medium.com/fit/c/80/80/1*gNMwawuf36Uklu4IJSz5oA.png</PackageIconUrl>
-		<PackageId>Particl.NBXplorer.Client</PackageId>
+		<PackageId>tecnovert.Particl.NBXplorer.Client</PackageId>
 		<PackageTags>bitcoin,particl</PackageTags>
 		<PackageProjectUrl>https://github.com/spazzymoto/NBXplorer/</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -28,8 +28,8 @@
 		<Optimize>true</Optimize>
         </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Particl.NBitcoin" Version="7.0.24" />
-		<PackageReference Include="Particl.NBitcoin.Altcoins" Version="3.0.18" />
+		<PackageReference Include="tecnovert.Particl.NBitcoin" Version="7.0.24" />
+		<PackageReference Include="tecnovert.Particl.NBitcoin.Altcoins" Version="3.0.18" />
 		<PackageReference Include="System.Net.WebSockets.Client" Version="4.3.2" />
 	</ItemGroup>
 </Project>
