@@ -240,8 +240,6 @@ namespace NBXplorer.Backends.Postgres
 			var gap = await connection.ExecuteScalarAsync<int>(
 				"SELECT gap FROM descriptors " +
 				"WHERE code=@code AND descriptor=@descriptor", descriptorKey);
-			if (gap >= MinPoolSize)
-				return 0;
 			var toGenerate = Math.Max(0, MaxPoolSize - gap);
 			if (query.MaxAddresses is int max)
 				toGenerate = Math.Min(max, toGenerate);
