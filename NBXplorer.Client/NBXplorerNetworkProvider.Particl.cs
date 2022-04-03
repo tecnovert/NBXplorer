@@ -7,11 +7,12 @@ namespace NBXplorer
 {
     public partial class NBXplorerNetworkProvider
     {
-		private void InitParticl(NetworkType networkType)
+		private void InitParticl(ChainName networkType)
 		{
 			Add(new NBXplorerNetwork(NBitcoin.Altcoins.Particl.Instance, networkType)
 			{
-				MinRPCVersion = 170104
+				MinRPCVersion = 190219,
+				CoinType = networkType == ChainName.Mainnet ? new KeyPath("44'") : new KeyPath("1'"),
 			});
 		}
 
