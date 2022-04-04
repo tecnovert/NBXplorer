@@ -1,0 +1,25 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0.101-bullseye-slim AS builder
+WORKDIR /source
+COPY NBXplorer/NBXplorer.csproj NBXplorer/NBXplorer.csproj
+COPY NBXplorer.Client/NBXplorer.Client.csproj NBXplorer.Client/NBXplorer.Client.csproj
+# Cache some dependencies
+
+COPY nuget_pkgs/ /packages
+RUN cd NBXplorer && dotnet restore -s /packages -s https://api.nuget.org/v3/index.json && cd ..
+COPY . .
+RUN cd NBXplorer && \
+    dotnet publish --output /app/ --configuration Release && \
+    cd .. && \
+    dotnet build -c Release NBXplorer/NBXplorer.csproj && \
+    dotnet pack -c Release NBXplorer.Client/NBXplorer.Client.csproj -o /app/packages
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0.1-bullseye-slim
+WORKDIR /app
+
+RUN mkdir /datadir
+ENV NBXPLORER_DATADIR=/datadir
+ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
+VOLUME /datadir
+
+COPY --from=builder "/app" .
+ENTRYPOINT ["dotnet", "NBXplorer.dll"]
