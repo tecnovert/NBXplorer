@@ -5,8 +5,8 @@ using System.Text;
 
 namespace NBXplorer
 {
-    public partial class NBXplorerNetworkProvider
-    {
+	public partial class NBXplorerNetworkProvider
+	{
 		private void InitParticl(ChainName networkType)
 		{
 			Add(new NBXplorerNetwork(NBitcoin.Altcoins.Particl.Instance, networkType)
